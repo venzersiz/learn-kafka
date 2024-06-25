@@ -42,7 +42,7 @@ class BasicProducerTest {
                 ProducerRecord<String, String> record = new ProducerRecord<>("some-topic-3", "value - " + n);
                 RecordMetadata metadata = producer.send(record).get();
 
-                log.info("Topics: {}, Partition: {}, Offset: {}, Key: {}, Message: {}",
+                log.info("Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
                          metadata.topic(), metadata.partition(), metadata.offset(), record.key(), record.value());
             }
         } catch (Exception e) {
@@ -71,7 +71,7 @@ class BasicProducerTest {
         public void onCompletion(RecordMetadata metadata, Exception e) {
 
             if (e == null) {
-                log.info("Topics: {}, Partition: {}, Offset: {}, Key: {}, Message: {}",
+                log.info("Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
                          metadata.topic(), metadata.partition(), metadata.offset(), record.key(), record.value());
             } else {
                 log.error("", e);
